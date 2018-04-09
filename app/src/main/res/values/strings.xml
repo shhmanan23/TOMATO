@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tomato</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="Signup">Sign Up</string>
+    <string name="login">Log In</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="google">Sign in with Google</string>
+    <string name="name">Name</string>
+</resources>

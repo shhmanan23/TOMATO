@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+    <item android:id="@+id/login"
+        android:icon="@mipmap/ic_person_black_24dp"
+        android:title="LOGIN" />
+
+    <item android:id="@+id/fav"
+        android:icon="@mipmap/ic_favorite_black_24dp"
+        android:title="FAV" />
+
+    <item android:id="@+id/nearby"
+        android:icon="@mipmap/ic_location_on_black_24dp"
+        android:title="NEAR BY" />
+
+    <item android:id="@+id/about"
+        android:icon="@mipmap/ic_info_black_24dp"
+        android:title="ABOUT US" />
+    </group>
+</menu>
