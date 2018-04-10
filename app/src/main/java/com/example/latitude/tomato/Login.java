@@ -31,6 +31,7 @@ public class Login extends Fragment {
     public Login(){}
     private FirebaseAuth mAuth;
     private ProgressBar Pb;
+    android.support.v4.app.FragmentTransaction ft;
     public View onCreateView(LayoutInflater   layoutInflater  , ViewGroup con , Bundle SBI)
     {
         View view = layoutInflater.inflate(R.layout.login, con,false);
@@ -93,9 +94,10 @@ public class Login extends Fragment {
                                     Pb.setVisibility(View.GONE);
                                     //FirebaseUser user = mAuth.getCurrentUser();
                                     Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                    /*Intent i = new Intent(getActivity(),main.class);
+                                    Intent i = new Intent(getActivity(),main.class);
                                     startActivity(i);
-                                    getActivity().finish();*/
+                                   // getActivity().finish();*/
+
 
                                 } else {
                                     // If sign in fails, display a message to the user.
