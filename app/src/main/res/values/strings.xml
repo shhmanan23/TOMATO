@@ -8,4 +8,5 @@
     <string name="pass">Password</string>
     <string name="google">Sign in with Google</string>
     <string name="name">Name</string>
+    <string name="home">Home</string>
 </resources>
