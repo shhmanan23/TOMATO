@@ -54,6 +54,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
         holder.add.setText(r_add.get(position).toString());
         holder.I.setImageResource(r_image.get(position).hashCode());
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
