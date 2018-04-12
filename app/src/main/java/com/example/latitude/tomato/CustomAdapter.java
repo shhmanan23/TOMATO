@@ -103,6 +103,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
                 Intent in = new Intent(context,rdetails.class);
                 in.putExtra("RESNAME",res_name);
                 in.putExtra("RESADD",res_add);
+                context.startActivity(in);
             }
         });
     }
