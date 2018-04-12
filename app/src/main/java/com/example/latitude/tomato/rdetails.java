@@ -1,5 +1,6 @@
 package com.example.latitude.tomato;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -57,7 +58,8 @@ public class rdetails extends AppCompatActivity {
 
             public void onClick(View v) {
 
-
+                Intent in = new Intent(rdetails.this, viewmenu.class);
+                startActivity(in);
 
             }
 

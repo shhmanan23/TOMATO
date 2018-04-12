@@ -36,9 +36,9 @@ public class main extends AppCompatActivity {
     private TextView nav_name;
     private TextView nav_email;
     android.support.v4.app.FragmentTransaction ft;
-    ArrayList r_image = new ArrayList<>(Arrays.asList(R.drawable.r1,R.drawable.r2));
-    ArrayList r_name = new ArrayList<>(Arrays.asList("Blue Roof Top","I love Sandwich House","avc"));
-    ArrayList r_add = new ArrayList<>(Arrays.asList("4.5","3","7"));
+   // ArrayList r_image = new ArrayList<>(Arrays.asList(R.drawable.r1,R.drawable.r2));
+    //ArrayList r_name = new ArrayList<>(Arrays.asList("Blue Roof Top","I love Sandwich House","avc"));
+    //ArrayList r_add = new ArrayList<>(Arrays.asList("4.5","3","7"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
