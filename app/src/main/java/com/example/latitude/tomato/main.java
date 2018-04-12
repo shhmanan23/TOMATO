@@ -37,8 +37,8 @@ public class main extends AppCompatActivity {
     private TextView nav_email;
     android.support.v4.app.FragmentTransaction ft;
     ArrayList r_image = new ArrayList<>(Arrays.asList(R.drawable.r1,R.drawable.r2));
-    ArrayList r_name = new ArrayList<>(Arrays.asList("Blue Roof Top","I love Sandwich House"));
-    ArrayList r_add = new ArrayList<>(Arrays.asList("4.5","3"));
+    ArrayList r_name = new ArrayList<>(Arrays.asList("Blue Roof Top","I love Sandwich House","avc"));
+    ArrayList r_add = new ArrayList<>(Arrays.asList("4.5","3","7"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +46,19 @@ public class main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rv = findViewById(R.id.recycle);
+
+
+        /*rv.setVisibility(View.GONE);
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new Login());
+        ft.commit();*/
+        //getSupportActionBar().setTitle("LOGIN");
+
+
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm);
-        CustomAdapter ca = new CustomAdapter(main.this,r_image,r_name,r_add);
+        //CustomAdapter ca = new CustomAdapter(main.this,r_name,r_add);
+        CustomAdapter ca = new CustomAdapter(main.this);
         rv.setAdapter(ca);
 
 
@@ -73,7 +83,7 @@ public class main extends AppCompatActivity {
         nav_name = findViewById(R.id.nav_Name);
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            RecyclerView rv = findViewById(R.id.recycle);
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 mDrawerlayout.closeDrawers();
