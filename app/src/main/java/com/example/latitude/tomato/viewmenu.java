@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 public class viewmenu extends AppCompatActivity {
+    android.support.v4.app.FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,25 @@ public class viewmenu extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
 
                 viewPager.setCurrentItem(tab.getPosition());
+                switch (tab.getPosition())
+                {
+                    case 0:
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.pager,new Bestsellers());
+                        ft.commit();
+                        break;
+                    case 1:
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.pager,new Indian());
+                        ft.commit();
+                        break;
+                    case 2:
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.pager,new Continental());
+                        ft.commit();
+                        break;
+
+                }
             }
 
             @Override

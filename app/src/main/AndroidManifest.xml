@@ -26,7 +26,8 @@
         <activity android:name=".Signup" />
         <activity android:name=".rdetails" />
         <activity android:name=".viewmenu" />
-        <activity android:name=".addreviews"></activity>
+        <activity android:name=".addreviews" />
+        <activity android:name=".rate"></activity>
     </application>
 
 </manifest>

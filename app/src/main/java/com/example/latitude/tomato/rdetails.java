@@ -32,7 +32,7 @@ public class rdetails extends AppCompatActivity {
 
         String rest_add = b.getString("RESADD");
 
-        TextView resname = findViewById(R.id.NAME);
+        final TextView resname = findViewById(R.id.NAME);
 
         TextView resadd = findViewById(R.id.AD);
 
@@ -88,7 +88,10 @@ public class rdetails extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
+                Intent in = new Intent(rdetails.this, rate.class);
+                String n = resname.getText().toString();
+                in.putExtra("R",n);
+                startActivity(in);
 
 
             }
