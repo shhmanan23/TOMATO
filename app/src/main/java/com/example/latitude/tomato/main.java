@@ -47,17 +47,8 @@ public class main extends AppCompatActivity {
 
         rv = findViewById(R.id.recycle);
 
-
-        /*rv.setVisibility(View.GONE);
-        ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main,new Login());
-        ft.commit();*/
-        //getSupportActionBar().setTitle("LOGIN");
-
-
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm);
-        //CustomAdapter ca = new CustomAdapter(main.this,r_name,r_add);
         CustomAdapter ca = new CustomAdapter(main.this);
         rv.setAdapter(ca);
 

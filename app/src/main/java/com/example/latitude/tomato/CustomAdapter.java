@@ -75,11 +75,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
     public class MVH extends  RecyclerView.ViewHolder{
         TextView name , add;
         ImageView I;
+        String ID;
         public  MVH (View itemView){
             super(itemView);
             name = itemView.findViewById(R.id.name);
             add = itemView.findViewById(R.id.address);
             I = itemView.findViewById(R.id.I1);
+
         }
     }
 
@@ -94,16 +96,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
         holder.name.setText(r_name.get(position).toString());
         holder.add.setText(r_add.get(position).toString());
         holder.I.setImageBitmap((Bitmap)r_image.get(position));
-
+        holder.ID = id.get(position).toString();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String res_name = holder.name.getText().toString();
-                String res_add = holder.add.getText().toString();
+                /*String res_name = holder.name.getText().toString();
+                String res_add = holder.add.getText().toString();*/
+                String ID = holder.ID;
                 Intent in = new Intent(context,rdetails.class);
-                in.putExtra("RESNAME",res_name);
-                in.putExtra("RESADD",res_add);
+                in.putExtra("RESID",ID);
+                //in.putExtra("RESADD",res_add);
                 context.startActivity(in);
             }
         });
