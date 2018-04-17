@@ -1,5 +1,7 @@
 package com.example.latitude.tomato;
 
+import android.support.v4.app.Fragment;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,12 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by LATITUDE on 03-04-2018.
- */
+public class Near extends Fragment {
 
-public class Fav extends Fragment {
-    public Fav(){}
+    public Near(){}
 
     public View onCreateView(LayoutInflater layoutInflater  , ViewGroup con , Bundle SBI)
     {
@@ -27,3 +26,4 @@ public class Fav extends Fragment {
         return  v;
     }
 }
+

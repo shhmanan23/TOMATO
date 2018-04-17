@@ -2,6 +2,7 @@ package com.example.latitude.tomato;
 
 import android.app.FragmentManager;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -41,19 +42,16 @@ public class viewmenu extends AppCompatActivity {
                 switch (tab.getPosition())
                 {
                     case 0:
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.pager,new Bestsellers());
-                        ft.commit();
+                        Fragment f=adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f).commit();
                         break;
                     case 1:
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.pager,new Indian());
-                        ft.commit();
+                        Fragment f1=adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f1).commit();
                         break;
                     case 2:
-                        ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.pager,new Continental());
-                        ft.commit();
+                        Fragment f2=adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f2).commit();
                         break;
 
                 }
@@ -62,14 +60,17 @@ public class viewmenu extends AppCompatActivity {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
+                }
+
+
+
+
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onTabReselected(TabLayout.Tab tab) {}
 
-            }
         });
-    }
+        }
     
     
 }

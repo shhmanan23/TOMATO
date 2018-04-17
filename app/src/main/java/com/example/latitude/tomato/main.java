@@ -117,6 +117,25 @@ public class main extends AppCompatActivity {
                         item.setChecked(true);
                         mDrawerlayout.closeDrawers();
                         break;
+                    case R.id.nearby:
+                        rv.setVisibility(View.GONE);
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.main,new Near());
+                        ft.commit();
+                        getSupportActionBar().setTitle("NEAR BY RESTAURANT");
+                        item.setChecked(true);
+                        mDrawerlayout.closeDrawers();
+                        break;
+                    case R.id.about:
+                        rv.setVisibility(View.GONE);
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.main,new About());
+                        ft.commit();
+                        getSupportActionBar().setTitle("NEAR BY RESTAURANT");
+                        item.setChecked(true);
+                        mDrawerlayout.closeDrawers();
+                        break;
+
                 }
                 return false;
             }

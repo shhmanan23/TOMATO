@@ -1,5 +1,7 @@
 package com.example.latitude.tomato;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
@@ -51,7 +53,11 @@ public class rdetails extends AppCompatActivity {
         // write code to get data of address/rating from firebase
 
 
-
+        FragmentManager fm=getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        displayreview c=new displayreview();
+        ft.add(R.id.fragment,new displayreview());
+        ft.commit();
         view.setOnClickListener(new View.OnClickListener() {
 
             @Override

@@ -15,13 +15,14 @@ public class rate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate);
         Bundle B = new Bundle();
-        String n = B.getString("R");
+        B = getIntent().getExtras();
+        String n1 = B.getString("R");
 
         final RatingBar rb = (RatingBar)findViewById(R.id.ratingBar);
         final EditText e1 = (EditText)findViewById(R.id.writereview);
         TextView t1 = (TextView)findViewById(R.id.restn);
         Button b1 = (Button)findViewById(R.id.post);
-        t1.setText(n);
+        t1.setText(n1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
