@@ -26,7 +26,7 @@ public class Indian extends Fragment {
         RecyclerView VM_rv = (RecyclerView)view.findViewById(R.id.i_recycle);
         LinearLayoutManager lm1 = new LinearLayoutManager(getActivity().getApplicationContext());
         VM_rv.setLayoutManager(lm1);
-        LAdapter la = new LAdapter(getContext(),i_name,i_price);
+        LAdapter la = new LAdapter(getContext(), i_name, i_price, 1);
         VM_rv.setAdapter(la);
 
         return  view;

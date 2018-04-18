@@ -27,7 +27,8 @@
         <activity android:name=".rdetails" />
         <activity android:name=".viewmenu" />
         <activity android:name=".addreviews" />
-        <activity android:name=".rate"></activity>
+        <activity android:name=".rate" />
+        <activity android:name=".Summary"></activity>
     </application>
 
 </manifest>

@@ -28,7 +28,7 @@ public class Continental extends Fragment {
         RecyclerView VM_rv = (RecyclerView)view.findViewById(R.id.conti_recycle);
         LinearLayoutManager lm1 = new LinearLayoutManager(getActivity().getApplicationContext());
         VM_rv.setLayoutManager(lm1);
-        LAdapter la = new LAdapter(getContext(),i_name,i_price);
+        LAdapter la = new LAdapter(getContext(),i_name, i_price, 2);
         VM_rv.setAdapter(la);
 
         return  view;
