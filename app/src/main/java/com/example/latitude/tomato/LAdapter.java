@@ -101,13 +101,11 @@ public class LAdapter extends RecyclerView.Adapter {
             Iadd = itemView.findViewById(R.id.additem);
             Iprice = itemView.findViewById(R.id.price);
         }
-
     }
     @Override
     public LVH  onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewmenu_row, parent, false);
         return new LVH(v);
-
     }
 
     @Override
@@ -139,6 +137,4 @@ public class LAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return i_name.size();
     }
-
-
 }
