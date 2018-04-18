@@ -11,7 +11,7 @@
     <string name="home">Home</string>
 
     <string name="customnotificationtitle">TOMATO ORDER DETAILS</string>
-    <string name="customnotificationtext">Dear customer your order has been successfully placed. Enjoy your meal.</string>
     <string name="customnotificationticker">Custom Notification Ticker</string>
     <string name="customnotification">Custom Notification</string>
+    <string name="customnotificationtext">Dear customer your order has been successfully placed. Enjoy your meal.</string>
 </resources>

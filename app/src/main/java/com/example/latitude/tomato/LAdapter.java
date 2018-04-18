@@ -37,16 +37,17 @@ public class LAdapter extends RecyclerView.Adapter {
     private Adderi adderi=new viewmenu();
     private Adderb adderb=new viewmenu();
 
-    public LAdapter(Context context,final int CallingClass){
+    public LAdapter(final Context context, final int CallingClass){
         this.context = context;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         switch (CallingClass){
             case 0:
-                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
                         .whereEqualTo("Cat", "BestSeller")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        Toast.makeText(context, "best", Toast.LENGTH_SHORT).show();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                             i_name.add(queryDocumentSnapshot.get("Name"));
                             i_price.add(queryDocumentSnapshot.get("Price"));
@@ -58,7 +59,7 @@ public class LAdapter extends RecyclerView.Adapter {
                 });
                 break;
             case 1:
-                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
                         .whereEqualTo("Cat", "Indian")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -74,7 +75,7 @@ public class LAdapter extends RecyclerView.Adapter {
                 });
                 break;
             case 2:
-                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
                         .whereEqualTo("Cat", "Continental")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
