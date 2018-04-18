@@ -9,13 +9,18 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LAdapter extends RecyclerView.Adapter {
-    ArrayList i_name;
-    ArrayList i_price;
+    final ArrayList i_name=new ArrayList();
+    final ArrayList i_price=new ArrayList();
     Context context;
     boolean check[];
     int callingClass;
@@ -31,14 +36,60 @@ public class LAdapter extends RecyclerView.Adapter {
     private Adderc adderc=new viewmenu();
     private Adderi adderi=new viewmenu();
     private Adderb adderb=new viewmenu();
-    public LAdapter(){}
 
-    public LAdapter(Context context, ArrayList i_name, ArrayList i_price, int callingClass){
+    public LAdapter(Context context,final int CallingClass){
         this.context = context;
-        this.i_name = i_name;
-        this.i_price = i_price;
-        this.check = new boolean[getItemCount()];
-        this.callingClass = callingClass;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        switch (CallingClass){
+            case 0:
+                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                        .whereEqualTo("Cat", "BestSeller")
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                            i_name.add(queryDocumentSnapshot.get("Name"));
+                            i_price.add(queryDocumentSnapshot.get("Price"));
+                        }
+                        notifyDataSetChanged();
+                        check = new boolean[getItemCount()];
+                        callingClass = CallingClass;
+                    }
+                });
+                break;
+            case 1:
+                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                        .whereEqualTo("Cat", "Indian")
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                            i_name.add(queryDocumentSnapshot.get("Name"));
+                            i_price.add(queryDocumentSnapshot.get("Price"));
+                        }
+                        notifyDataSetChanged();
+                        check = new boolean[getItemCount()];
+                        callingClass = CallingClass;
+                    }
+                });
+                break;
+            case 2:
+                db.collection("Menu").whereEqualTo("Restaurant", "Restaurants/Cvn10NJwMwvjW1TyNpmL")
+                        .whereEqualTo("Cat", "Continental")
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                            i_name.add(queryDocumentSnapshot.get("Name"));
+                            i_price.add(queryDocumentSnapshot.get("Price"));
+                        }
+                        notifyDataSetChanged();
+                        check = new boolean[getItemCount()];
+                        callingClass = CallingClass;
+                    }
+                });
+                break;
+        }
     }
     public class LVH extends RecyclerView.ViewHolder{
         CheckBox Iadd;
@@ -68,7 +119,6 @@ public class LAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 ((LVH)holder).Iadd.toggle();
                 check[position]=((LVH)holder).Iadd.isChecked();
-                //check.set(position, ((LVH)holder).Iadd.isChecked()?"true":"false");
                 switch (callingClass){
                     case 0:
                         adderb.Addb(i_name, i_price, check);

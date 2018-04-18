@@ -13,16 +13,16 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAdapter.Adderi, LAdapter.Adderc{
-    ArrayList b_name;
-    ArrayList b_price;
-    boolean[] b_check;
-    ArrayList i_name;
-    ArrayList i_price;
-    boolean[] i_check;
-    ArrayList c_name;
-    ArrayList c_price;
-    boolean[] c_check;
+public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAdapter.Adderi, LAdapter.Adderc {
+    static ArrayList b_name;
+    static ArrayList b_price;
+    static boolean[] b_check;
+    static ArrayList i_name;
+    static ArrayList i_price;
+    static boolean[] i_check;
+    static ArrayList c_name;
+    static ArrayList c_price;
+    static boolean[] c_check;
     LAdapter lAdapter;
 
     @Override
@@ -68,19 +68,18 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
             public void onTabSelected(TabLayout.Tab tab) {
 
                 viewPager.setCurrentItem(tab.getPosition());
-                switch (tab.getPosition())
-                {
+                switch (tab.getPosition()) {
                     case 0:
-                        Fragment f=adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f).commit();
+                        Fragment f = adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f).commit();
                         break;
                     case 1:
-                        Fragment f1=adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f1).commit();
+                        Fragment f1 = adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f1).commit();
                         break;
                     case 2:
-                        Fragment f2=adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager,f2).commit();
+                        Fragment f2 = adapter.getItem(tab.getPosition());
+                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f2).commit();
                         break;
 
                 }
@@ -89,36 +88,34 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
-                }
-
-
-
+            }
 
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {}
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
 
         });
-        }
+    }
 
     @Override
     public void Addb(ArrayList i_name, ArrayList i_price, boolean[] check) {
-        b_name=i_name;
-        b_price=i_price;
-        b_check=check;
+        b_name = i_name;
+        b_price = i_price;
+        b_check = check;
     }
 
     @Override
     public void Addi(ArrayList name, ArrayList price, boolean[] check) {
-        i_name=name;
-        i_price=price;
-        i_check=check;
+        i_name = name;
+        i_price = price;
+        i_check = check;
     }
 
     @Override
     public void Addc(ArrayList i_name, ArrayList i_price, boolean[] check) {
-        c_name=i_name;
-        c_price=i_price;
-        c_check=check;
+        c_name = i_name;
+        c_price = i_price;
+        c_check = check;
     }
 }

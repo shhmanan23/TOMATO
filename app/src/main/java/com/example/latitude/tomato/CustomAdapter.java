@@ -81,7 +81,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
             name = itemView.findViewById(R.id.name);
             add = itemView.findViewById(R.id.address);
             I = itemView.findViewById(R.id.I1);
-
         }
     }
 
