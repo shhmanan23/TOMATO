@@ -18,12 +18,13 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LAdapter extends RecyclerView.Adapter {
+public class LAdapter extends RecyclerView.Adapter  {
     final ArrayList i_name=new ArrayList();
     final ArrayList i_price=new ArrayList();
     Context context;
     boolean check[];
     int callingClass;
+
     public interface Adderb{
         void Addb(ArrayList i_name, ArrayList i_price, boolean[] check);
     }

@@ -19,6 +19,9 @@ public class DA extends RecyclerView.Adapter {
         this.ratingss = ratingss;
         this.rev = rev;
     }
+    public DA(Context context){
+        this.context=context;
+    }
 
     public class MyVH extends RecyclerView.ViewHolder {
         // init the item view's
