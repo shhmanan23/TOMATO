@@ -70,6 +70,7 @@ public class rdetails extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent in = new Intent(rdetails.this, viewmenu.class);
+                in.putExtra("RESID",rest_id);
                 startActivity(in);
 
             }

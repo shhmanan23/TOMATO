@@ -18,11 +18,12 @@ public class Indian extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        String rest_id = getActivity().getIntent().getExtras().getString("RESID");
         View view = inflater.inflate(R.layout.i, container, false);
         RecyclerView VM_rv = view.findViewById(R.id.i_recycle);
         LinearLayoutManager lm1 = new LinearLayoutManager(getActivity().getApplicationContext());
         VM_rv.setLayoutManager(lm1);
-        LAdapter la = new LAdapter(getContext(), 1);
+        LAdapter la = new LAdapter(getContext(), rest_id, 1);
         VM_rv.setAdapter(la);
 
         return  view;

@@ -52,6 +52,8 @@ public class Summary extends AppCompatActivity {
         ArrayList b_check=new ArrayList(Arrays.asList(b_c));
         ArrayList c_check=new ArrayList(Arrays.asList(c_c));
         ArrayList i_check=new ArrayList(Arrays.asList(i_c));
+        ArrayList ans_name=new ArrayList();
+        ArrayList ans_price=new ArrayList();
         if(b_name!=null) {
             if (c_name != null) {
                 b_name.addAll(c_name);
@@ -80,20 +82,12 @@ public class Summary extends AppCompatActivity {
                 b_check=i_check;
             }
         }
-
-            for (int i = 0; i < b_name.size(); i++) {
-                //Toast.makeText(this, "krishnaaaaa", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, ""+b_name.get(i)+b_price.get(i),Toast.LENGTH_SHORT).show();
+        for (int i = 0; i < b_check.size(); i++) {
+            if((boolean)b_check.get(i)){
+                ans_name.add(b_name.get(i));
+                ans_price.add(b_price.get(i));
             }
-            if(b_check==null){
-                Toast.makeText(this, "krishnaaaaa",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, "manan",Toast.LENGTH_SHORT).show();
-            }
-
-
-
+        }
 
         order.setOnClickListener(new View.OnClickListener() {
             @Override

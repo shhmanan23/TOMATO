@@ -35,14 +35,14 @@ public class displayreview extends Fragment {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                    double rating=(double)queryDocumentSnapshot.get("Rating");
+                    String rating=queryDocumentSnapshot.get("Rating").toString();
                     String review=(String)queryDocumentSnapshot.get("Review");
                     String user = (String)queryDocumentSnapshot.get("user");
                     username.add(user);
                     rev.add(review);
                     ratingss.add(rating);
                 }
-                RecyclerView rv=(RecyclerView)view.findViewById(R.id.rdisplay);
+                RecyclerView rv=view.findViewById(R.id.rdisplay);
                 LinearLayoutManager lm=new LinearLayoutManager(getActivity());
                 rv.setLayoutManager(lm);
                 DA da=new DA(view.getContext(),username,rev,ratingss);
@@ -51,5 +51,4 @@ public class displayreview extends Fragment {
         });
         return view;
     }
-
 }

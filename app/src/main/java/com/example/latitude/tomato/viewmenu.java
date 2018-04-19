@@ -22,13 +22,13 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
     static ArrayList c_name;
     static ArrayList c_price;
     static boolean[] c_check;
-    LAdapter lAdapter;
 
+    //String rest_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewmenu);
-
+        //rest_id=getIntent().getExtras().getString("RESID");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton Next = findViewById(R.id.Next);
@@ -64,25 +64,38 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
         final Fragment f = adapter.getItem(0);
         final Fragment f1 = adapter.getItem(1);
         final Fragment f2 = adapter.getItem(2);
-        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f).commit();
-        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f1).commit();
-        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f2).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f1).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f2).commit();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                int curpos = 0;
                 viewPager.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()) {
                     case 0:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f).commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f).commit();
+                        if (f.isAdded()) {
+                            getSupportFragmentManager().beginTransaction().hide(f);
+                            getSupportFragmentManager().beginTransaction().show(f).commit();
+                        } else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.pager, f).commit();
+                        }
                         break;
                     case 1:
-
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f1).commit();
+                        if (f1.isAdded()) {
+                            getSupportFragmentManager().beginTransaction().show(f1).commit();
+                        } else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.pager, f1).commit();
+                        }                        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f1).commit();
                         break;
                     case 2:
-
-                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f2).commit();
+                        if (f2.isAdded()) {
+                            getSupportFragmentManager().beginTransaction().show(f2).commit();
+                        } else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.pager, f2).commit();
+                        }                        //getSupportFragmentManager().beginTransaction().replace(R.id.pager, f2).commit();
                         break;
 
                 }

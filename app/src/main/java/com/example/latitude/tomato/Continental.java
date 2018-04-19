@@ -17,11 +17,12 @@ public class Continental extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        String rest_id = getActivity().getIntent().getExtras().getString("RESID");
         View view = inflater.inflate(R.layout.conti, container, false);
         RecyclerView VM_rv = view.findViewById(R.id.conti_recycle);
         LinearLayoutManager lm1 = new LinearLayoutManager(getActivity().getApplicationContext());
         VM_rv.setLayoutManager(lm1);
-        LAdapter la = new LAdapter(getContext(), 2);
+        LAdapter la = new LAdapter(getContext(), rest_id,2);
         VM_rv.setAdapter(la);
 
         return  view;

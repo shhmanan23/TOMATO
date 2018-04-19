@@ -38,13 +38,13 @@ public class LAdapter extends RecyclerView.Adapter  {
     private Adderi adderi=new viewmenu();
     private Adderb adderb=new viewmenu();
 
-    public LAdapter(final Context context, final int CallingClass){
+    public LAdapter(final Context context, String rest_id, final int CallingClass){
         this.context = context;
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         switch (CallingClass){
             case 0:
-                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
-                        .whereEqualTo("Cat", "BestSeller")
+                db.collection("Menu").whereEqualTo("Restaurant", rest_id)
+                        .whereEqualTo("Cat", "Bestsellers")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -60,7 +60,7 @@ public class LAdapter extends RecyclerView.Adapter  {
                 });
                 break;
             case 1:
-                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
+                db.collection("Menu").whereEqualTo("Restaurant", rest_id)
                         .whereEqualTo("Cat", "Indian")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -76,7 +76,7 @@ public class LAdapter extends RecyclerView.Adapter  {
                 });
                 break;
             case 2:
-                db.collection("Menu").whereEqualTo("Restaurant", "Cvn10NJwMwvjW1TyNpmL")
+                db.collection("Menu").whereEqualTo("Restaurant", rest_id)
                         .whereEqualTo("Cat", "Continental")
                         .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override

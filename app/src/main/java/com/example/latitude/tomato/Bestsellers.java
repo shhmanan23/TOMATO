@@ -2,6 +2,7 @@ package com.example.latitude.tomato;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,29 +20,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Bestsellers extends Fragment {
-     Bundle saveState = null;
-     private static final String SAVED_BUNDLE="saved";
-    public Bestsellers()
-    {}
+     public Bestsellers(){}
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-       // outState.putBooleanArray("barray",check);
-    }
-boolean [] check;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
+        String rest_id = getActivity().getIntent().getExtras().getString("RESID");
         View view =  inflater.inflate(R.layout.bs, container, false);
         RecyclerView VM_rv = view.findViewById(R.id.bs_recycle);
         LinearLayoutManager lm1 = new LinearLayoutManager(getActivity().getApplicationContext());
         VM_rv.setLayoutManager(lm1);
 
-        LAdapter la = new LAdapter(getContext(),0);
-        // check=la.getCheck();
-     VM_rv.setAdapter(la);
+        LAdapter la = new LAdapter(getContext(), rest_id, 0);
+        VM_rv.setAdapter(la);
 
         return  view;
     }

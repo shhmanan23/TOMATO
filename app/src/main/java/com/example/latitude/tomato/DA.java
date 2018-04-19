@@ -19,9 +19,6 @@ public class DA extends RecyclerView.Adapter {
         this.ratingss = ratingss;
         this.rev = rev;
     }
-    public DA(Context context){
-        this.context=context;
-    }
 
     public class MyVH extends RecyclerView.ViewHolder {
         // init the item view's
@@ -30,9 +27,9 @@ public class DA extends RecyclerView.Adapter {
         public MyVH(View itemView) {
             super(itemView);
             // get the reference of item view's
-            name = (TextView) itemView.findViewById(R.id.user);
-            rev = (TextView) itemView.findViewById(R.id.rev);
-            rate = (TextView) itemView.findViewById(R.id.rating);
+            name = itemView.findViewById(R.id.user);
+            rev = itemView.findViewById(R.id.rev);
+            rate = itemView.findViewById(R.id.rating);
         }
     }
 
