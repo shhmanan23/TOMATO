@@ -18,14 +18,19 @@ public class rate extends AppCompatActivity {
         B = getIntent().getExtras();
         String n1 = B.getString("R");
 
+
         final RatingBar rb = (RatingBar)findViewById(R.id.ratingBar);
         final EditText e1 = (EditText)findViewById(R.id.writereview);
         TextView t1 = (TextView)findViewById(R.id.restn);
         Button b1 = (Button)findViewById(R.id.post);
+        rb.setMax(5);
+        rb.setStepSize(1);
+        rb.setNumStars(5);
         t1.setText(n1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 float F = rb.getRating(); // rating
                 String opi = e1.getText().toString(); // the written opinion of users
 

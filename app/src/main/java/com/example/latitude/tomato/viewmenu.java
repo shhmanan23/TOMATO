@@ -61,7 +61,12 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
         viewPager.setAdapter(adapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
+        final Fragment f = adapter.getItem(0);
+        final Fragment f1 = adapter.getItem(1);
+        final Fragment f2 = adapter.getItem(2);
+        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f).commit();
+        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f1).commit();
+        //getSupportFragmentManager().beginTransaction().add(R.id.pager, f2).commit();
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -69,16 +74,15 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
                 viewPager.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition()) {
                     case 0:
-                        Fragment f = adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f).commit();
                         break;
                     case 1:
-                        Fragment f1 = adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f1).commit();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f1).commit();
                         break;
                     case 2:
-                        Fragment f2 = adapter.getItem(tab.getPosition());
-                        getSupportFragmentManager().beginTransaction().add(R.id.pager, f2).commit();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.pager, f2).commit();
                         break;
 
                 }
@@ -117,4 +121,5 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
         c_price = i_price;
         c_check = check;
     }
+
 }
