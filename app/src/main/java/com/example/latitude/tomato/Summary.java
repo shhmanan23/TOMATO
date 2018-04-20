@@ -10,6 +10,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.res.TypedArrayUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +27,7 @@ import static com.example.latitude.tomato.NotificationUtils.ANDROID_CHANNEL_ID;
 
 public class Summary extends AppCompatActivity {
     private NotificationUtils mNotificationUtils;
+    RecyclerView R1;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,25 @@ public class Summary extends AppCompatActivity {
                 ans_price.add(b_price.get(i));
             }
         }
+            if(b_check==null){
+                Toast.makeText(this, "krishnaaaaa",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "KKKK",Toast.LENGTH_SHORT).show();
+            }
+        for (Object o : b_check) {
+
+
+        }
+        R1 = findViewById(R.id.order_details);
+
+        LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
+        R1.setLayoutManager(lm);
+        OrderAdapter OD = new OrderAdapter(this,b_name,b_price,b_check);
+        R1.setAdapter(OD);
+
+
+
 
         order.setOnClickListener(new View.OnClickListener() {
             @Override

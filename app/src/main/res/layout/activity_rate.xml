@@ -21,7 +21,7 @@
         android:id="@+id/restn"
         android:layout_width="263dp"
         android:layout_height="45dp"
-        android:text="TextView"
+        android:text="RESTAURANT NAME"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,26 +29,27 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.526" />
+        app:layout_constraintVertical_bias="0.444" />
 
     <EditText
         android:id="@+id/writereview"
         android:layout_width="270dp"
-        android:layout_height="wrap_content"
+        android:layout_height="109dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text="WRITE DOWN YOUR OPINION"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        app:layout_constraintVertical_bias="0.639" />
 
     <Button
         android:id="@+id/post"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="POST REVIEW"
+        android:background="@drawable/b3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,12 +58,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="210dp"
-        android:scaleType="fitCenter"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pink" />
+        app:srcCompat="@drawable/e1" />
 
 </android.support.constraint.ConstraintLayout>

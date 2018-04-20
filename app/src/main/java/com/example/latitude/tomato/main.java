@@ -122,7 +122,7 @@ public class main extends AppCompatActivity {
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.main,new About());
                         ft.commit();
-                        getSupportActionBar().setTitle("NEAR BY RESTAURANT");
+                        getSupportActionBar().setTitle("ABOUT US");
                         item.setChecked(true);
                         mDrawerlayout.closeDrawers();
                         break;

@@ -45,11 +45,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.332" />
 
+
+
     <Button
         android:id="@+id/REVIEW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light"
+        android:background="@drawable/b4"
         android:text="ADD REVIEWS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +64,7 @@
         android:id="@+id/VIEWMENU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@drawable/b3"
         android:text="VIEW ONLINE MENU"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +88,7 @@
         android:id="@+id/FAV"
         android:layout_width="56dp"
         android:layout_height="45dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,10 +102,12 @@
         android:layout_width="match_parent"
         android:layout_height="124dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78"
+        app:layout_constraintVertical_bias="0.758"
         tools:layout="@layout/row_rdisplay" />
-
 
 
 </android.support.constraint.ConstraintLayout>
