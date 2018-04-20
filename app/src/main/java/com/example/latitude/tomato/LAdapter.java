@@ -15,6 +15,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.Console;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,17 +23,18 @@ public class LAdapter extends RecyclerView.Adapter  {
     final ArrayList i_name=new ArrayList();
     final ArrayList i_price=new ArrayList();
     Context context;
-    boolean check[];
+    ArrayList check;
     int callingClass;
+    int im=0;
 
     public interface Adderb{
-        void Addb(ArrayList i_name, ArrayList i_price, boolean[] check);
+        void Addb(ArrayList i_name, ArrayList i_price, ArrayList check);
     }
     public interface Adderi{
-        void Addi(ArrayList i_name, ArrayList i_price, boolean[] check);
+        void Addi(ArrayList i_name, ArrayList i_price, ArrayList check);
     }
     public interface Adderc{
-        void Addc(ArrayList i_name, ArrayList i_price, boolean[] check);
+        void Addc(ArrayList i_name, ArrayList i_price, ArrayList check);
     }
     private Adderc adderc=new viewmenu();
     private Adderi adderi=new viewmenu();
@@ -54,7 +56,10 @@ public class LAdapter extends RecyclerView.Adapter  {
                             i_price.add(queryDocumentSnapshot.get("Price"));
                         }
                         notifyDataSetChanged();
-                        check = new boolean[getItemCount()];
+                        check = new ArrayList(getItemCount());
+                        for (int i = 0; i < getItemCount(); i++) {
+                             check.add(false);
+                        }
                         callingClass = CallingClass;
                     }
                 });
@@ -70,7 +75,10 @@ public class LAdapter extends RecyclerView.Adapter  {
                             i_price.add(queryDocumentSnapshot.get("Price"));
                         }
                         notifyDataSetChanged();
-                        check = new boolean[getItemCount()];
+                        check = new ArrayList(getItemCount());
+                        for (int i = 0; i < getItemCount(); i++) {
+                            check.add(false);
+                        }
                         callingClass = CallingClass;
                     }
                 });
@@ -86,7 +94,10 @@ public class LAdapter extends RecyclerView.Adapter  {
                             i_price.add(queryDocumentSnapshot.get("Price"));
                         }
                         notifyDataSetChanged();
-                        check = new boolean[getItemCount()];
+                        check = new ArrayList(getItemCount());
+                        for (int i = 0; i < getItemCount(); i++) {
+                            check.add(false);
+                        }
                         callingClass = CallingClass;
                     }
                 });
@@ -118,7 +129,7 @@ public class LAdapter extends RecyclerView.Adapter  {
             @Override
             public void onClick(View v) {
                 ((LVH)holder).Iadd.toggle();
-                check[position]=((LVH)holder).Iadd.isChecked();
+                check.set(position,((LVH)holder).Iadd.isChecked());
                 switch (callingClass){
                     case 0:
                         adderb.Addb(i_name, i_price, check);

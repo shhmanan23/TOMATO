@@ -41,5 +41,21 @@ public class PageAdapter extends FragmentPagerAdapter {
         return mNumOfTabs;
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+        String title = null;
+        switch (position){
+            case 0:
+                title = "Bestsellers";
+                break;
+            case 1:
+                title = "Indian";
+                break;
+            case 2:
+                title = "Continental";
+        }
+        return title;
+    }
+
 }
 

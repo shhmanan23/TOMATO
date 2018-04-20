@@ -30,14 +30,7 @@ public class Summary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
-        mNotificationUtils = new NotificationUtils(this);
-        Bundle b=getIntent().getExtras();
-        Button order = (Button)findViewById(R.id.button2);
-        boolean [] B=b.getBooleanArray("bestseller_check");
-        for (boolean b1 : B) {
-            String s = b1? "true":"false";
-            Toast.makeText(this, s,Toast.LENGTH_SHORT).show();
-        }
+        Button order = findViewById(R.id.button2);
 
         Bundle B_order = getIntent().getExtras();
         ArrayList b_name = B_order.getStringArrayList("bestseller_name");
@@ -46,12 +39,9 @@ public class Summary extends AppCompatActivity {
         ArrayList b_price = B_order.getStringArrayList("bestseller_price");
         ArrayList c_price= B_order.getStringArrayList("continental_price");
         ArrayList i_price= B_order.getStringArrayList("indian_price");
-        boolean [] b_c = B_order.getBooleanArray("bestseller_check");
-        boolean [] c_c= B_order.getBooleanArray("continental_check");
-        boolean [] i_c= B_order.getBooleanArray("indian_check");
-        ArrayList b_check=new ArrayList(Arrays.asList(b_c));
-        ArrayList c_check=new ArrayList(Arrays.asList(c_c));
-        ArrayList i_check=new ArrayList(Arrays.asList(i_c));
+        ArrayList b_check = (ArrayList)B_order.get("bestseller_check");
+        ArrayList c_check= (ArrayList)B_order.get("continental_check");
+        ArrayList i_check= (ArrayList)B_order.get("indian_check");
         ArrayList ans_name=new ArrayList();
         ArrayList ans_price=new ArrayList();
         if(b_name!=null) {
@@ -96,10 +86,11 @@ public class Summary extends AppCompatActivity {
             }
         });
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public  void  send(String title , String message){
 
-
+        mNotificationUtils = new NotificationUtils(this);
         Notification.Builder nb = mNotificationUtils.getAndroidChannelNotification(title, message);
         mNotificationUtils.getManager().notify(101,nb.build());
 

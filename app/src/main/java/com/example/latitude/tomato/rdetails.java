@@ -88,7 +88,7 @@ public class rdetails extends AppCompatActivity {
 
 
                 Intent in = new Intent(rdetails.this, rate.class);
-                in.putExtra("R",rest_id);
+                in.putExtra("RESID",rest_id);
                 startActivity(in);
 
 
