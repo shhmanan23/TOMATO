@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/IMAGEVIEW"
         android:layout_width="match_parent"
-        android:layout_height="148dp"
+        android:layout_height="145dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +44,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.332" />
-
 
 
     <Button
@@ -84,17 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/FAV"
-        android:layout_width="56dp"
-        android:layout_height="45dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.249"
-        app:srcCompat="@mipmap/ic_favorite_black_24dp" />
 
     <fragment
         android:id="@+id/fragment"
@@ -108,6 +96,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.758"
         tools:layout="@layout/row_rdisplay" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:checked="false"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.239" />
 
 
 </android.support.constraint.ConstraintLayout>

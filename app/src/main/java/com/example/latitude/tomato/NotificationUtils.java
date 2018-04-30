@@ -51,7 +51,7 @@ public class NotificationUtils extends ContextWrapper {
         return new Notification.Builder(getApplicationContext(), ANDROID_CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(body)
-                .setSmallIcon(android.R.drawable.stat_notify_more)
+                .setSmallIcon(android.R.drawable.ic_dialog_alert)
                 .setAutoCancel(true);
     }
 }

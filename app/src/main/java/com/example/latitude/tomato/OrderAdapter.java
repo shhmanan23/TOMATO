@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OrderAdapter extends RecyclerView.Adapter {
     ArrayList b_name, b_price , b_check;
+    ArrayList quantity = new ArrayList<>(Arrays.asList("4","3","2"));
     Context summary;
     public OrderAdapter(Summary summary, ArrayList b_name, ArrayList b_price, ArrayList b_check) {
         this.summary = summary;
@@ -20,17 +22,22 @@ public class OrderAdapter extends RecyclerView.Adapter {
         this.b_price = b_price;
     }
 
+//    public interface price{
+//
+//        int getprice(ArrayList b_price , ArrayList quantity);
+//    }
+
     public class ODH extends RecyclerView.ViewHolder {
         // init the item view's
         TextView I_N , I_P ;
-        EditText Q;
+        EditText Qe;
 
         public ODH(View itemView) {
             super(itemView);
             // get the reference of item view's
             I_N = (TextView) itemView.findViewById(R.id.I_N);
             I_P = (TextView) itemView.findViewById(R.id.I_P);
-            Q = (EditText) itemView.findViewById(R.id.Q);
+            Qe = (EditText) itemView.findViewById(R.id.Q);
         }
     }
 
@@ -46,6 +53,10 @@ public class OrderAdapter extends RecyclerView.Adapter {
         ((ODH)holder).I_N.setText(b_name.get(position).toString());
         ((ODH)holder).I_P.setText(b_price.get(position).toString());
        // ((ODH)holder).rate.setText(ratingss.get(position).toString());
+       // ((ODH) holder).Qe.setText(Qe.[holder.getAdapterPosition()]);
+      //  holder.Qe.setText(Qe[holder.getAdapterPosition()]);
+       // holder.myCustomEditTextListener.updatePosition(holder.getAdapterPosition());
+        //((ODH) holder).Qe.setText(b_name[holder.getAdapterPosition()]);
 
     }
 

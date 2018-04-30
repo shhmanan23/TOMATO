@@ -91,12 +91,12 @@ public class Summary extends AppCompatActivity {
 
 
         }
-        R1 = findViewById(R.id.order_details);
+       /* R1 = findViewById(R.id.order_details);
 
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         R1.setLayoutManager(lm);
         OrderAdapter OD = new OrderAdapter(this,b_name,b_price,b_check);
-        R1.setAdapter(OD);
+        R1.setAdapter(OD);*/
 
 
 

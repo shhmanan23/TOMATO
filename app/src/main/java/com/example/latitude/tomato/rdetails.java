@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -21,7 +23,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 public class rdetails extends AppCompatActivity {
-
+    ToggleButton TB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class rdetails extends AppCompatActivity {
         final TextView resrate = findViewById(R.id.RATING);
         final ImageView pic = findViewById(R.id.IMAGEVIEW);
         Button view = findViewById(R.id.VIEWMENU);
-        ImageButton fav = findViewById(R.id.FAV);
+
+       // TB.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.pink));
         Button rate = findViewById(R.id.REVIEW);
         //resname.setText(rest_name);
         //resadd.setText(rest_add);
@@ -75,13 +78,7 @@ public class rdetails extends AppCompatActivity {
 
             }
         });
-        fav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                //to be written from  here
-            }
-        });
+        //TB.setOnCheckedChangeListener(new C);
         rate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
