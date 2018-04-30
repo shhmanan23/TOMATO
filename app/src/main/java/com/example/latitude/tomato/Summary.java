@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.res.TypedArrayUtils;
@@ -16,25 +17,37 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Arrays;
 
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.latitude.tomato.NotificationUtils.ANDROID_CHANNEL_ID;
 
-public class Summary extends AppCompatActivity {
+public class Summary extends AppCompatActivity implements OrderAdapter.total{
     private NotificationUtils mNotificationUtils;
     RecyclerView R1;
+    long total=0;
+    static TextView tot;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
         Button order = findViewById(R.id.button2);
-
+        tot = findViewById(R.id.tot);
         Bundle B_order = getIntent().getExtras();
         ArrayList b_name = B_order.getStringArrayList("bestseller_name");
         ArrayList c_name = B_order.getStringArrayList("continental_name");
@@ -45,8 +58,8 @@ public class Summary extends AppCompatActivity {
         ArrayList b_check = (ArrayList)B_order.get("bestseller_check");
         ArrayList c_check= (ArrayList)B_order.get("continental_check");
         ArrayList i_check= (ArrayList)B_order.get("indian_check");
-        ArrayList ans_name=new ArrayList();
-        ArrayList ans_price=new ArrayList();
+        final ArrayList ans_name=new ArrayList();
+        final ArrayList ans_price=new ArrayList();
         if(b_name!=null) {
             if (c_name != null) {
                 b_name.addAll(c_name);
@@ -75,28 +88,21 @@ public class Summary extends AppCompatActivity {
                 b_check=i_check;
             }
         }
+        ans_name.clear();
+        ans_price.clear();
         for (int i = 0; i < b_check.size(); i++) {
             if((boolean)b_check.get(i)){
                 ans_name.add(b_name.get(i));
                 ans_price.add(b_price.get(i));
             }
         }
-            if(b_check==null){
-                Toast.makeText(this, "krishnaaaaa",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, "KKKK",Toast.LENGTH_SHORT).show();
-            }
-        for (Object o : b_check) {
 
-
-        }
-       /* R1 = findViewById(R.id.order_details);
+        R1 = findViewById(R.id.order_details);
 
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         R1.setLayoutManager(lm);
-        OrderAdapter OD = new OrderAdapter(this,b_name,b_price,b_check);
-        R1.setAdapter(OD);*/
+        OrderAdapter OD = new OrderAdapter(this,ans_name,ans_price);
+        R1.setAdapter(OD);
 
 
 
@@ -104,8 +110,27 @@ public class Summary extends AppCompatActivity {
         order.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
-            }
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                if(firebaseAuth.getCurrentUser()==null){
+                    Toast.makeText(getApplicationContext(), "Please login first to complete the order", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Map <String, Object>h = new HashMap();
+                    h.put("item", ans_name);
+                    //To be added
+                    db.collection("Orders").add(h).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "error in placing order", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            }}
         });
     }
 
@@ -119,4 +144,12 @@ public class Summary extends AppCompatActivity {
 
     }
 
+    @Override
+    public void Total(ArrayList amt) {
+        total = 0;
+        for (Object o : amt) {
+            total += (long)o;
+        }
+        tot.setText("Total :"+total);
+    }
 }
