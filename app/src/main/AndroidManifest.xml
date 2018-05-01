@@ -55,7 +55,8 @@
 
         <activity
             android:name=".GPS"
-            android:label="@string/title_activity_gps"></activity>
+            android:label="@string/title_activity_gps" />
+        <activity android:name=".O_S"></activity>
     </application>
 
 </manifest>
