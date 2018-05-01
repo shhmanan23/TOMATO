@@ -1,6 +1,7 @@
 package com.example.latitude.tomato;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.view.LayoutInflater;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter {
     ArrayList r_id, o_time, o_sum;
+    ArrayList o_id;
     Context context;
 
     public HistoryAdapter(Context context) {
@@ -68,6 +70,15 @@ public class HistoryAdapter extends RecyclerView.Adapter {
         ((HH)holder).r_id.setText(r_id.get(position).toString());
         ((HH)holder).o_time.setText(o_time.get(position).toString());
         ((HH)holder).o_sum.setText(o_sum.get(position).toString());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(context,O_S.class);
+                in.putExtra("orderid",o_id);
+                context.startActivity(in);
+
+            }
+        });
     }
 
     @Override
