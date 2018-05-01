@@ -19,11 +19,11 @@ import java.util.Arrays;
 
 public class displayreview extends Fragment {
 
-    ArrayList username=new ArrayList(Arrays.asList("Krishna","Heli","Madhavi","Modi","Devisha"));
+    ArrayList username=new ArrayList();
 
-    ArrayList rev =new ArrayList(Arrays.asList("Amazinggggggg","OMG yummy","ewwww","nice"," too good"));
+    ArrayList rev =new ArrayList();
 
-    ArrayList ratingss =new ArrayList(Arrays.asList("4.3","4.7","1","3.2","4.5"));
+    ArrayList ratingss =new ArrayList();
 
     public View onCreateView(LayoutInflater lf, ViewGroup vg, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

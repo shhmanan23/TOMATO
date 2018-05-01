@@ -7,17 +7,7 @@
     android:id="@+id/placeholder"
     tools:context=".viewmenu">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="27dp"
-        android:layout_marginEnd="31dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:srcCompat="@android:drawable/ic_menu_send" />
+
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -47,5 +37,16 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/appBarLayout" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="31dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
 </RelativeLayout>

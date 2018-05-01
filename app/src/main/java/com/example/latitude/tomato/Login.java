@@ -36,10 +36,10 @@ public class Login extends Fragment {
         View view = layoutInflater.inflate(R.layout.login, con,false);
         final EditText uemail   = view.findViewById(R.id.email);
         final EditText upwd = view.findViewById(R.id.pass);
-        Button signup = (Button) view.findViewById(R.id.signup);
-        Button login = (Button) view.findViewById(R.id.log);
+        Button signup = view.findViewById(R.id.signup);
+        Button login = view.findViewById(R.id.log);
         Button google = view.findViewById(R.id.google);
-        Pb = (ProgressBar) view.findViewById(R.id.loginpb);
+        Pb = view.findViewById(R.id.loginpb);
         Pb.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
 
@@ -91,7 +91,8 @@ public class Login extends Fragment {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
                                     Pb.setVisibility(View.GONE);
-                                    //FirebaseUser user = mAuth.getCurrentUser();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Str.User=user.getUid();
                                     Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent(getActivity(),main.class);
                                     startActivity(i);

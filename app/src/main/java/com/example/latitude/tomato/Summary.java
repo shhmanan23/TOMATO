@@ -31,6 +31,7 @@ import java.util.Arrays;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -117,12 +118,17 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
                 else{
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                     Map <String, Object>h = new HashMap();
-                    h.put("item", ans_name);
+                    h.put("Items", ans_name);
+                    h.put("Status", 0);
+                    h.put("time", new Date());
+                    h.put("user", Str.User);
+
                     //To be added
                     db.collection("Orders").add(h).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
+                            startActivity(new Intent(getApplicationContext(), main.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -25,7 +26,6 @@ public class LAdapter extends RecyclerView.Adapter  {
     Context context;
     ArrayList check;
     int callingClass;
-    int im=0;
 
     public interface Adderb{
         void Addb(ArrayList i_name, ArrayList i_price, ArrayList check);
