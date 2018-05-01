@@ -41,7 +41,7 @@ public class OrderAdapter extends RecyclerView.Adapter {
             I_N = itemView.findViewById(R.id.I_N);
             I_P = itemView.findViewById(R.id.I_P);
             Qe = itemView.findViewById(R.id.Q);
-            Amount = itemView.findViewById(R.id.Amount);
+            Amount = itemView.findViewById(R.id.Amountt);
             Qe.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
         }
     }
