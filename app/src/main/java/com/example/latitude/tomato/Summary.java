@@ -48,7 +48,7 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
         Button order = findViewById(R.id.button2);
-        tot = findViewById(R.id.tot);
+        tot = findViewById(R.id.tot12);
         Bundle B_order = getIntent().getExtras();
         ArrayList b_name = B_order.getStringArrayList("bestseller_name");
         ArrayList c_name = B_order.getStringArrayList("continental_name");

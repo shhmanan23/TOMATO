@@ -17,7 +17,7 @@
         android:id="@+id/button2"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tot"
+        android:layout_alignBaseline="@+id/tot12"
         android:layout_alignParentStart="true"
         android:layout_marginStart="23dp"
         android:background="@drawable/b2"
@@ -29,7 +29,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/tot"
+        android:id="@+id/tot12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

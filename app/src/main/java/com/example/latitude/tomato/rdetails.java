@@ -120,7 +120,7 @@ public class rdetails extends AppCompatActivity {
         FragmentManager fm=getFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
         displayreview c=new displayreview();
-        ft.add(R.id.fragment,new displayreview());
+        ft.replace(R.id.fragment,new displayreview());
         ft.commit();
         view.setOnClickListener(new View.OnClickListener() {
             @Override
