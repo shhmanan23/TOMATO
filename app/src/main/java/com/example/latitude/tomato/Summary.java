@@ -95,9 +95,10 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
             if((boolean)b_check.get(i)){
                 ans_name.add(b_name.get(i));
                 ans_price.add(b_price.get(i));
+                total += (long) b_price.get(i);
             }
         }
-
+        tot.setText("Total :"+total);
         R1 = findViewById(R.id.order_details);
 
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
@@ -122,7 +123,8 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
                     h.put("Status", 0);
                     h.put("time", new Date());
                     h.put("user", Str.User);
-
+                    h.put("total", tot.getText());
+                    h.put("Restaurant", Str.restaurant);
                     //To be added
                     db.collection("Orders").add(h).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override

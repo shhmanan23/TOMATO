@@ -35,6 +35,7 @@ public class main extends AppCompatActivity {
     private ImageView profilepic;
     private TextView nav_name;
     private TextView nav_email;
+    NavigationView nv;
     android.support.v4.app.FragmentTransaction ft;
    // ArrayList r_image = new ArrayList<>(Arrays.asList(R.drawable.r1,R.drawable.r2));
     //ArrayList r_name = new ArrayList<>(Arrays.asList("Blue Roof Top","I love Sandwich House","avc"));
@@ -43,13 +44,15 @@ public class main extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
         setContentView(R.layout.activity_main);
 
         rv = findViewById(R.id.recycle);
 
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(lm);
-        CustomAdapter ca = new CustomAdapter(main.this);
+        CustomAdapter ca = new CustomAdapter(main.this, true);
         rv.setAdapter(ca);
 
 
@@ -60,18 +63,13 @@ public class main extends AppCompatActivity {
         mtoolbar = findViewById(R.id.n_action);
         setSupportActionBar(mtoolbar);
         mDrawerlayout.addDrawerListener(mToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToggle.syncState();
 
-        /*ft = getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.main, new Login());
-        ft.commit();
-        getSupportActionBar().setTitle("LOGIN");*/
-
-        NavigationView nv = findViewById(R.id.navi);
-        profilepic = findViewById(R.id.ppic);
-        nav_email = findViewById(R.id.nav_email);
-        nav_name = findViewById(R.id.nav_Name);
+        nv = findViewById(R.id.navi);
+        View hv = nv.getHeaderView(0);
+        profilepic = hv.findViewById(R.id.ppic);
+        nav_email = hv.findViewById(R.id.nav_email);
+        nav_name = hv.findViewById(R.id.nav_Name);
 
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -90,12 +88,20 @@ public class main extends AppCompatActivity {
                         break;
 
                     case R.id.login:
+                        if(user==null){
                         rv.setVisibility(View.GONE);
                         ft = getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.main,new Login());
                         ft.commit();
                         getSupportActionBar().setTitle("LOGIN");
-                        item.setChecked(true);
+                        item.setChecked(true);}
+                        else{
+                            mAuth.signOut();
+                            item.setTitle("Log in");
+                            Str.User=null;
+                            startActivity(new Intent(main.this, main.class));
+                            finish();
+                        }
                         mDrawerlayout.closeDrawers();
                         break;
 
@@ -147,16 +153,16 @@ public class main extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
-        //nav_email.setText(user.getEmail().toString());
+        if(user!=null) Str.User=user.getUid();
         if(user==null) {
             Toast.makeText(getApplicationContext(), "please login", Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(getApplicationContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
         }
-        /*if (user!=null){
+
+        if (user!=null){
+            nv.getMenu().getItem(1).setTitle("Log out");
             if(user.getPhotoUrl()!=null){
                 Toast.makeText(getApplicationContext(), user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
                 //Glide.with(this).load(user.getPhotoUrl()).into(profilepic);
@@ -165,7 +171,7 @@ public class main extends AppCompatActivity {
                 nav_name.setText("welcome, "+user.getDisplayName());
             }
             nav_email.setText(user.getEmail());
-        }*/
+        }
     }
 
     public boolean onOptionsItemSelected(MenuItem item){

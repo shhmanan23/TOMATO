@@ -9,18 +9,34 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter {
     ArrayList r_id, o_time, o_sum;
     Context context;
-    public HistoryAdapter(Context context, ArrayList r_id, ArrayList o_time, ArrayList o_sum) {
 
+    public HistoryAdapter(Context context) {
         this.context = context;
-        this.r_id = r_id;
-        this.o_time = o_time;
-        this.o_sum = o_sum;
-
+        r_id=new ArrayList();
+        o_sum=new ArrayList();
+        o_time=new ArrayList();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Orders").whereEqualTo("user", Str.User).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
+                    r_id.add(queryDocumentSnapshot.get("Restaurant"));
+                    o_sum.add(queryDocumentSnapshot.get("total"));
+                    o_time.add(queryDocumentSnapshot.get("time"));
+                }
+                notifyDataSetChanged();
+            }
+        });
     }
 
     public class HH extends RecyclerView.ViewHolder {

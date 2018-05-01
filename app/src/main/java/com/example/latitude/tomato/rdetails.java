@@ -59,6 +59,8 @@ public class rdetails extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
                                 ArrayList favs = (ArrayList)documentSnapshot.get("Favourites");
+                                if(favs==null) favs = new ArrayList();
+                                favs.remove(rest_id);
                                 favs.add(rest_id);
                                 Map<String, ArrayList>h=new HashMap<>();
                                 h.put("Favourites", favs);
@@ -92,10 +94,11 @@ public class rdetails extends AppCompatActivity {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     ArrayList favs = (ArrayList)documentSnapshot.get("Favourites");
+                    if(favs!=null){
                     if(favs.contains(rest_id)){
                         TB.setChecked(true);
                         TB.setBackground(getDrawable(R.drawable.filled));
-                    }
+                    }}
                 }
             });
         }

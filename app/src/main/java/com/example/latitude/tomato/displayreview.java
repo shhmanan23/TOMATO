@@ -27,10 +27,9 @@ public class displayreview extends Fragment {
 
     public View onCreateView(LayoutInflater lf, ViewGroup vg, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_forcomments);
         final View view=lf.inflate(R.layout.display,vg,false);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Ratings").whereEqualTo("restaurant", "Cvn10NJwMwvjW1TyNpmL")
+        db.collection("Ratings").whereEqualTo("restaurant", Str.restaurant)
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

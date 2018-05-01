@@ -2,24 +2,19 @@ package com.example.latitude.tomato;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
-
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -36,9 +31,7 @@ import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GPS extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleMap.OnMarkerClickListener {
@@ -164,43 +157,6 @@ public class GPS extends FragmentActivity implements OnMapReadyCallback,
         }
 
 
-    }
-
-    public void onClick1(View v)
-    {
-        /*if(v.getId()==R.id.B_search)
-        {
-            EditText tf_location =  findViewById(R.id.TF_location);
-            String location = tf_location.getText().toString();
-            List<Address> addressList;
-           // mMap.clear();
-
-
-            if(!location.equals(""))
-            {
-                Geocoder geocoder = new Geocoder(this);
-
-                try {
-                    addressList = geocoder.getFromLocationName(location, 5);
-
-                    if(addressList != null)
-                    {
-                        for(int i = 0;i<addressList.size();i++)
-                        {
-                            LatLng latLng = new LatLng(addressList.get(i).getLatitude() , addressList.get(i).getLongitude());
-                            MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.position(latLng);
-                            markerOptions.title(location);
-                            mMap.addMarker(markerOptions);
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                            mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-                        }
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-             }
-        }*/
     }
 
     @Override

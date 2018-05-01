@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.util.Patterns;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -94,9 +96,10 @@ public class Login extends Fragment {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     Str.User=user.getUid();
                                     Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    NavigationView navigationView = getActivity().findViewById(R.id.navi);
                                     Intent i = new Intent(getActivity(),main.class);
                                     startActivity(i);
-                                    /*getActivity().finish();*/
+                                    getActivity().finish();
 
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -119,11 +122,5 @@ public class Login extends Fragment {
         });
         return view;
 
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        //Toast.makeText(context, "new frag", Toast.LENGTH_SHORT).show();
     }
 }

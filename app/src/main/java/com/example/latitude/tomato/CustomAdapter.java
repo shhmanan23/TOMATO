@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,10 +33,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
     private ArrayList r_add=new ArrayList();
     protected ArrayList id=new ArrayList();
 
-    public CustomAdapter(Context c){
+    public CustomAdapter(Context c, boolean b){
         this.context=c;
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         final StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+        if(b){
         db.collection("Restaurants")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,6 +72,41 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
                         }
                     }
                 });
+    }else{
+            db.collection("users").document(Str.User).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    ArrayList fav = (ArrayList) documentSnapshot.get("Favourites");
+                    for (Object o : fav) {
+                        db.collection("Restaurants").document((String)o).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(final DocumentSnapshot documentSnapshot) {
+                                r_name.add(documentSnapshot.get("Name"));
+                                r_add.add(documentSnapshot.get("Address"));
+                                r_image.add(null);
+                                id.add(documentSnapshot.getId());
+                                StorageReference pathReference = storageRef.child("Restaurants/"+documentSnapshot.get("photo").toString());
+                                pathReference.getBytes(2048000).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    @Override
+                                    public void onSuccess(byte[] bytes) {
+                                        int mnn=id.indexOf(documentSnapshot.getId());
+                                        r_image.set(mnn, BitmapFactory.decodeByteArray(bytes, 0, bytes.length));
+                                        notifyDataSetChanged();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                notifyDataSetChanged();
+                            }
+                        });
+                    }
+
+                }
+            });
+        }
     }
 
     public class MVH extends  RecyclerView.ViewHolder{
