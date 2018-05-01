@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,9 +39,14 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
         tabLayout.addTab(tabLayout.newTab().setText("CONTINENTAL"));  //TEXT TAB
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
         Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(b_check == null && i_check == null && c_check == null){
+                    Toast.makeText(getApplicationContext(),"Please add items to place order",Toast.LENGTH_SHORT).show();
+                }
+               else{
                 Intent I = new Intent(viewmenu.this, Summary.class);
                 I.putExtra("bestseller_name", b_name);
                 I.putExtra("bestseller_price", b_price);
@@ -52,7 +58,7 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
                 I.putExtra("continental_price", c_price);
                 I.putExtra("continental_check", c_check);
                 startActivity(I);
-            }
+            }}
         });
 
         final ViewPager viewPager =  findViewById(R.id.pager);
