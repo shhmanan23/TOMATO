@@ -126,6 +126,15 @@ public class main extends AppCompatActivity {
                         item.setChecked(true);
                         mDrawerlayout.closeDrawers();
                         break;
+                    case R.id.history:
+                        rv.setVisibility(View.GONE);
+                        ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.main,new History());
+                        ft.commit();
+                        getSupportActionBar().setTitle("ORDER HISTORY");
+                        item.setChecked(true);
+                        mDrawerlayout.closeDrawers();
+                        break;
 
                 }
                 return false;
