@@ -17,12 +17,15 @@ import java.util.ArrayList;
 public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAdapter.Adderi, LAdapter.Adderc {
     static ArrayList b_name;
     static ArrayList b_price;
+    static ArrayList b_id;
     static ArrayList b_check;
     static ArrayList i_name;
     static ArrayList i_price;
+    static ArrayList i_id;
     static ArrayList i_check;
     static ArrayList c_name;
     static ArrayList c_price;
+    static ArrayList c_id;
     static ArrayList c_check;
 
     @Override
@@ -50,12 +53,15 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
                 Intent I = new Intent(viewmenu.this, Summary.class);
                 I.putExtra("bestseller_name", b_name);
                 I.putExtra("bestseller_price", b_price);
+                I.putExtra("bestseller_id", b_id);
                 I.putExtra("bestseller_check", b_check);
                 I.putExtra("indian_name", i_name);
                 I.putExtra("indian_price", i_price);
+                I.putExtra("indian_id", i_id);
                 I.putExtra("indian_check", i_check);
                 I.putExtra("continental_name", c_name);
                 I.putExtra("continental_price", c_price);
+                I.putExtra("continental_id", c_id);
                 I.putExtra("continental_check", c_check);
                 startActivity(I);
             }}
@@ -84,23 +90,26 @@ public class viewmenu extends AppCompatActivity implements LAdapter.Adderb, LAda
     }
 
     @Override
-    public void Addb(ArrayList i_name, ArrayList i_price, ArrayList check) {
+    public void Addb(ArrayList i_name, ArrayList i_price, ArrayList i_id, ArrayList check) {
         b_name = i_name;
         b_price = i_price;
+        b_id = i_id;
         b_check = check;
     }
 
     @Override
-    public void Addi(ArrayList name, ArrayList price, ArrayList check) {
+    public void Addi(ArrayList name, ArrayList price, ArrayList i_id, ArrayList check) {
         i_name = name;
         i_price = price;
+        this.i_id = i_id;
         i_check = check;
     }
 
     @Override
-    public void Addc(ArrayList i_name, ArrayList i_price, ArrayList check) {
+    public void Addc(ArrayList i_name, ArrayList i_price, ArrayList i_id, ArrayList check) {
         c_name = i_name;
         c_price = i_price;
+        c_id = i_id;
         c_check = check;
     }
 

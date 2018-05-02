@@ -1,5 +1,6 @@
 package com.example.latitude.tomato;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +67,10 @@ public class rate extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Your review have been saved successfully", Toast.LENGTH_SHORT).show();
+                            Intent in = new Intent(rate.this, rdetails.class);
+                            in.putExtra("RESID", rest_id);
+                            startActivity(in);
+                            finish();
                         }
                         else {
                             Toast.makeText(getApplicationContext(), "Error rating the restaurant", Toast.LENGTH_SHORT).show();

@@ -18,33 +18,21 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter {
-    ArrayList r_id, o_time, o_sum;
-    ArrayList o_id;
+    ArrayList r_id, o_time, o_sum, o_id;
     Context context;
 
-    public HistoryAdapter(Context context) {
+    public HistoryAdapter(Context context, ArrayList r_id, ArrayList o_sum, ArrayList o_time, ArrayList o_id) {
         this.context = context;
-        r_id=new ArrayList();
-        o_sum=new ArrayList();
-        o_time=new ArrayList();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Orders").whereEqualTo("user", Str.User).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
-                    r_id.add(queryDocumentSnapshot.get("Restaurant"));
-                    o_sum.add(queryDocumentSnapshot.get("total"));
-                    o_time.add(queryDocumentSnapshot.get("time"));
-                }
-                notifyDataSetChanged();
-            }
-        });
+        this.o_time=o_time;
+        this.o_sum=o_sum;
+        this.r_id=r_id;
+        this.o_id = o_id;
     }
 
     public class HH extends RecyclerView.ViewHolder {
         // init the item view's
         TextView r_id , o_time, o_sum ;
-
+        String OrderId;
 
         public HH(View itemView) {
             super(itemView);
@@ -65,16 +53,18 @@ public class HistoryAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         ((HH)holder).r_id.setText(r_id.get(position).toString());
         ((HH)holder).o_time.setText(o_time.get(position).toString());
         ((HH)holder).o_sum.setText(o_sum.get(position).toString());
+        ((HH)holder).OrderId = o_id.get(position).toString();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(context,O_S.class);
-                in.putExtra("orderid",o_id);
+                in.putExtra("orderid",((HH) holder).OrderId);
+                Str.OID=((HH) holder).OrderId;
                 context.startActivity(in);
 
             }

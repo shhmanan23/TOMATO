@@ -23,18 +23,19 @@ import java.util.Arrays;
 public class LAdapter extends RecyclerView.Adapter  {
     final ArrayList i_name=new ArrayList();
     final ArrayList i_price=new ArrayList();
+    final ArrayList i_id = new ArrayList();
     Context context;
     ArrayList check;
     int callingClass;
 
     public interface Adderb{
-        void Addb(ArrayList i_name, ArrayList i_price, ArrayList check);
+        void Addb(ArrayList i_name, ArrayList i_price, ArrayList i_id,ArrayList check);
     }
     public interface Adderi{
-        void Addi(ArrayList i_name, ArrayList i_price, ArrayList check);
+        void Addi(ArrayList i_name, ArrayList i_price, ArrayList i_id, ArrayList check);
     }
     public interface Adderc{
-        void Addc(ArrayList i_name, ArrayList i_price, ArrayList check);
+        void Addc(ArrayList i_name, ArrayList i_price, ArrayList i_id, ArrayList check);
     }
     private Adderc adderc=new viewmenu();
     private Adderi adderi=new viewmenu();
@@ -53,7 +54,8 @@ public class LAdapter extends RecyclerView.Adapter  {
                         Toast.makeText(context, "best", Toast.LENGTH_SHORT).show();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                             i_name.add(queryDocumentSnapshot.get("Name"));
-                            i_price.add(queryDocumentSnapshot.get("Price"));
+                            i_price.add(queryDocumentSnapshot.getLong("Price"));
+                            i_id.add(queryDocumentSnapshot.getId());
                         }
                         notifyDataSetChanged();
                         check = new ArrayList(getItemCount());
@@ -72,7 +74,8 @@ public class LAdapter extends RecyclerView.Adapter  {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                             i_name.add(queryDocumentSnapshot.get("Name"));
-                            i_price.add(queryDocumentSnapshot.get("Price"));
+                            i_price.add(queryDocumentSnapshot.getLong("Price"));
+                            i_id.add(queryDocumentSnapshot.getId());
                         }
                         notifyDataSetChanged();
                         check = new ArrayList(getItemCount());
@@ -91,7 +94,8 @@ public class LAdapter extends RecyclerView.Adapter  {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots) {
                             i_name.add(queryDocumentSnapshot.get("Name"));
-                            i_price.add(queryDocumentSnapshot.get("Price"));
+                            i_price.add(queryDocumentSnapshot.getLong("Price"));
+                            i_id.add(queryDocumentSnapshot.getId());
                         }
                         notifyDataSetChanged();
                         check = new ArrayList(getItemCount());
@@ -132,13 +136,13 @@ public class LAdapter extends RecyclerView.Adapter  {
                 check.set(position,((LVH)holder).Iadd.isChecked());
                 switch (callingClass){
                     case 0:
-                        adderb.Addb(i_name, i_price, check);
+                        adderb.Addb(i_name, i_price, i_id, check);
                         break;
                     case 1:
-                        adderi.Addi(i_name, i_price, check);
+                        adderi.Addi(i_name, i_price, i_id, check);
                         break;
                     case 2:
-                        adderc.Addc(i_name, i_price, check);
+                        adderc.Addc(i_name, i_price, i_id, check);
                         break;
                 }
             }

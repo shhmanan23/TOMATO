@@ -153,19 +153,15 @@ public class main extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-        if(user!=null) Str.User=user.getUid();
         if(user==null) {
             Toast.makeText(getApplicationContext(), "please login", Toast.LENGTH_SHORT).show();
         }
         else{
+            Str.User=user.getUid();
             Toast.makeText(getApplicationContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
-        }
-
-        if (user!=null){
             nv.getMenu().getItem(1).setTitle("Log out");
             if(user.getPhotoUrl()!=null){
-                Toast.makeText(getApplicationContext(), user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
-                //Glide.with(this).load(user.getPhotoUrl()).into(profilepic);
+                Glide.with(this).load(user.getPhotoUrl()).into(profilepic);
             }
             if(user.getDisplayName()!=null){
                 nav_name.setText("welcome, "+user.getDisplayName());

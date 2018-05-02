@@ -14,17 +14,24 @@ import java.util.ArrayList;
 
 public class OrderAdapter extends RecyclerView.Adapter {
     interface total{
-        void Total(ArrayList amt);
+        void Total(ArrayList amt, ArrayList Q);
     }
-    ArrayList b_name, b_price , amt;
+    ArrayList b_name, b_price , amt, Q;
     Context summary;
     public OrderAdapter(Summary summary, ArrayList b_name, ArrayList b_price) {
         this.summary = summary;
         this.b_name = b_name;
         this.b_price = b_price;
         this.amt = (ArrayList) b_price.clone();
+        this.Q = new ArrayList();
+        for (int i = 0; i < b_name.size(); i++) {
+            Q.add(1);
+        }
     }
     total t = new Summary();
+    public interface quantity{
+        void getQuantity(ArrayList q);
+    }
 //    public interface price{
 //
 //        int getprice(ArrayList b_price , ArrayList quantity);
@@ -69,10 +76,11 @@ public class OrderAdapter extends RecyclerView.Adapter {
                 long p= (long)b_price.get(position);
 
                 long q = (s.toString().equals(""))?1:Long.valueOf(s.toString());
+                Q.set(position, q);
                 q=q*p;
                 ((ODH)holder).Amount.setText(Long.toString(q));
                 amt.set(position, q);
-                t.Total(amt);
+                t.Total(amt, Q);
                 //Toast.makeText(summary, Long.toString(p*q), Toast.LENGTH_SHORT).show();
                 //int Amt = (Integer.parseInt((String)b_price.get(position)))*(Integer.parseInt((String)s));
                 //Toast.makeText(summary, Integer.toString(Amt), Toast.LENGTH_SHORT).show();

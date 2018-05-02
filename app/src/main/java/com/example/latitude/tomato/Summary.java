@@ -42,6 +42,7 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
     RecyclerView R1;
     long total=0;
     static TextView tot;
+    ArrayList Q= new ArrayList();
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +60,24 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
         ArrayList b_check = (ArrayList)B_order.get("bestseller_check");
         ArrayList c_check= (ArrayList)B_order.get("continental_check");
         ArrayList i_check= (ArrayList)B_order.get("indian_check");
+        ArrayList b_id = (ArrayList) B_order.get("bestseller_id");
+        ArrayList i_id = (ArrayList) B_order.get("indian_id");
+        ArrayList c_id = (ArrayList) B_order.get("continental_id");
         final ArrayList ans_name=new ArrayList();
         final ArrayList ans_price=new ArrayList();
+        final ArrayList ans_id=new ArrayList();
         if(b_name!=null) {
             if (c_name != null) {
                 b_name.addAll(c_name);
                 b_price.addAll(c_price);
                 b_check.addAll(c_check);
+                b_id.addAll(c_id);
             }
             if (i_name != null) {
                 b_name.addAll(i_name);
                 b_price.addAll(i_price);
                 b_check.addAll(i_check);
+                b_id.addAll(i_id);
             }
         }else{
             if(c_name!=null){
@@ -78,24 +85,31 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
                     c_name.addAll(i_name);
                     c_price.addAll(i_price);
                     c_check.addAll(i_check);
+                    c_id.addAll(i_id);
                 }
                 b_name=c_name;
                 b_price=c_price;
                 b_check=c_check;
+                b_id = c_id;
             }
             else {
                 b_name=i_name;
                 b_price=i_price;
                 b_check=i_check;
+                b_id = i_id;
             }
         }
         ans_name.clear();
         ans_price.clear();
+        ans_id.clear();
         for (int i = 0; i < b_check.size(); i++) {
             if((boolean)b_check.get(i)){
                 ans_name.add(b_name.get(i));
                 ans_price.add(b_price.get(i));
-                total += (long) b_price.get(i);
+                ans_id.add(b_id.get(i));
+                Q.add(1);
+                long tp = (long) b_price.get(i);
+                total += tp;
             }
         }
         tot.setText("Total :"+total);
@@ -120,16 +134,18 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                     Map <String, Object>h = new HashMap();
                     h.put("Items", ans_name);
-                    h.put("Status", 0);
+                    h.put("Quantity", Q);
+                    h.put("Status", "0");
                     h.put("time", new Date());
                     h.put("user", Str.User);
                     h.put("total", tot.getText());
                     h.put("Restaurant", Str.restaurant);
+                    h.put("R_Name", Str.R_name);
                     //To be added
                     db.collection("Orders").add(h).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
+                            //send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
                             startActivity(new Intent(getApplicationContext(), main.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -153,7 +169,8 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
     }
 
     @Override
-    public void Total(ArrayList amt) {
+    public void Total(ArrayList amt, ArrayList Q) {
+        this.Q = Q;
         total = 0;
         for (Object o : amt) {
             total += (long)o;

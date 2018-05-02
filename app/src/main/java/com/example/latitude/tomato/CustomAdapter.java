@@ -141,6 +141,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MVH> {
                 String res_add = holder.add.getText().toString();*/
                 String ID = holder.ID;
                 Str.restaurant=ID;
+                Str.R_name = holder.name.getText().toString();
                 Intent in = new Intent(context,rdetails.class);
                 in.putExtra("RESID",ID);
                 //in.putExtra("RESADD",res_add);

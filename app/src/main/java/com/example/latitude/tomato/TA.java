@@ -11,25 +11,23 @@ import java.util.ArrayList;
 
 public class TA extends RecyclerView.Adapter {
 
-    ArrayList it,p,q;
+    ArrayList it,q;
     Context context;
-    public TA(Context context, ArrayList it, ArrayList p, ArrayList q) {
+    public TA(Context context, ArrayList it, ArrayList q) {
 
         this.context = context;
         this.it = it;
-        this.p = p;
         this.q = q;
     }
 
     public class MyVH extends RecyclerView.ViewHolder {
         // init the item view's
-        TextView name,pri,quant;
+        TextView name,quant;
 
         public MyVH(View itemView) {
             super(itemView);
             // get the reference of item view's
             name = itemView.findViewById(R.id.itemm);
-            pri = itemView.findViewById(R.id.value);
             quant = itemView.findViewById(R.id.quantity);
         }
     }
@@ -48,7 +46,6 @@ public class TA extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         ((MyVH)holder).name.setText(it.get(position).toString());
-        ((MyVH)holder).pri.setText(p.get(position).toString());
         ((MyVH)holder).quant.setText(q.get(position).toString());
 
     }

@@ -17,6 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
@@ -38,6 +41,7 @@ public class Signup extends AppCompatActivity {
     private ImageView I;
     private Uri ProfileImage;
     private String Name;
+    private Uri Downloadpp;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -46,6 +50,21 @@ public class Signup extends AppCompatActivity {
             try {
                 Bitmap bmp= MediaStore.Images.Media.getBitmap(getContentResolver(), ProfileImage);
                 I.setImageBitmap(bmp);
+                Pb.setVisibility(View.VISIBLE);
+                StorageReference ref = FirebaseStorage.getInstance().getReference("Users/"+System.currentTimeMillis()+".jpg");
+                ref.putFile(ProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Pb.setVisibility(View.GONE);
+                        Downloadpp = taskSnapshot.getDownloadUrl();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Pb.setVisibility(View.GONE);
+                        Toast.makeText(getApplicationContext(), "Error in uploading Profile Pic", Toast.LENGTH_SHORT).show();
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -120,7 +139,7 @@ public class Signup extends AppCompatActivity {
                                     if(ProfileImage!=null) {
                                         profileUpdates = new UserProfileChangeRequest.Builder()
                                                 .setDisplayName(Name)
-                                                .setPhotoUri(ProfileImage)
+                                                .setPhotoUri(Downloadpp)
                                                 .build();
                                     }
                                     else{

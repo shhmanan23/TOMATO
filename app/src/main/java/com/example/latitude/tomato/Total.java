@@ -8,30 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Total extends android.app.Fragment {
-    ArrayList IT =new ArrayList(Arrays.asList("Krishna","Heli","Madhavi","Modi","Devisha"));
-
-    ArrayList P =new ArrayList(Arrays.asList("Amazinggggggg","OMG yummy","ewwww","nice"," too good"));
-
-    ArrayList Q =new ArrayList(Arrays.asList("4.3","4.7","1","3.2","4.5"));
-
+    ArrayList IT =new ArrayList();
+    ArrayList Q =new ArrayList();
 
     public View onCreateView(LayoutInflater lf, ViewGroup vg, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_forcomments);
+        String OID = Str.OID;
         final View view = lf.inflate(R.layout.display, vg, false);
-
-
-
-        RecyclerView rv=view.findViewById(R.id.rdisplay);
-        LinearLayoutManager lm=new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        TA ta=new TA(view.getContext(),IT,P,Q);
-        rv.setAdapter(ta);
-
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("Orders").document(OID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                IT = (ArrayList)documentSnapshot.get("Items");
+                Q = (ArrayList)documentSnapshot.get("Quantity");
+                RecyclerView rv=view.findViewById(R.id.rdisplay);
+                LinearLayoutManager lm=new LinearLayoutManager(getActivity());
+                rv.setLayoutManager(lm);
+                TA ta=new TA(view.getContext(),IT,Q);
+                rv.setAdapter(ta);
+            }
+        });
         return  view;
     }
 }

@@ -103,6 +103,7 @@ public class Login extends Fragment {
 
                                 } else {
                                     // If sign in fails, display a message to the user.
+                                    Pb.setVisibility(View.GONE);
                                     if(task.getException() instanceof FirebaseAuthInvalidUserException){
                                         Toast.makeText(getContext(), "User does not exist!", Toast.LENGTH_SHORT).show();
                                         uemail.requestFocus();

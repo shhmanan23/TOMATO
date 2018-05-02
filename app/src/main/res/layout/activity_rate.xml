@@ -37,7 +37,7 @@
         android:layout_height="109dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="WRITE DOWN YOUR OPINION"
+        android:hint="WRITE DOWN YOUR OPINION"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
