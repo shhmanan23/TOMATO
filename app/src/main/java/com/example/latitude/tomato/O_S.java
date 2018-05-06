@@ -36,7 +36,8 @@ public class O_S extends AppCompatActivity {
                 dt.setText(DateFormat.getInstance().format(documentSnapshot.getDate("time")));
                 ordernum.setText(OID);
                 rest.setText(documentSnapshot.getString("R_Name"));
-                int x = Integer.parseInt(documentSnapshot.getString("status"));
+                String SS =documentSnapshot.getString("Status");
+                int x = Integer.parseInt(SS);
                 switch (x){
                     case 0:
                         status.setText("Your order has been placed");

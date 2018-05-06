@@ -145,7 +145,7 @@ public class Summary extends AppCompatActivity implements OrderAdapter.total{
                     db.collection("Orders").add(h).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            //send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
+                            send("TOMATO ORDER DETAILS","Dear customer your order has been successfully placed. Enjoy your meal.");
                             startActivity(new Intent(getApplicationContext(), main.class));
                         }
                     }).addOnFailureListener(new OnFailureListener() {

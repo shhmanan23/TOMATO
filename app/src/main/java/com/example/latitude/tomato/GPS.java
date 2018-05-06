@@ -207,6 +207,7 @@ public class GPS extends FragmentActivity implements OnMapReadyCallback,
         Toast.makeText(getApplicationContext(),"fgfghfv",Toast.LENGTH_SHORT).show();
         Intent in = new Intent(getApplicationContext(),rdetails.class);
         in.putExtra("RESID",marker.getSnippet());
+        Str.restaurant= marker.getSnippet();
         startActivity(in);
         return false;
     }
